@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Business.Models.StaffModel>
+
+@{
+    ViewBag.Title = "Персонал";
+}
+
+<div class="jumbotron">
+    <h1>Персонал</h1>
+    <p class="lead">Полный список сотрудников школы</p>
+</div>
+
+<button type="button" class="btn btn-secondary" data-dismiss="modal">
+    @Html.ActionLink("Добавить сотрудника", "Create", null, new { })
+</button>
+
+<table class="table">
+    <tr>
+        <th>ФИО</th>
+        <th>Дата рождения</th>
+        <th>Email</th>
+        <th>Контактный телефон</th>
+        <th>Действия</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.last_name)
+                @Html.DisplayFor(modelItem => item.first_name)
+                @Html.DisplayFor(modelItem => item.father_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.birth_dt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.phone_nbr)
+            </td>
+            <td>
+                @Html.ActionLink("Изменить", "Edit", new { id = item.id }) |
+                @*@Html.ActionLink("Details", "Details", new { id=item.id }) |*@
+                @Html.ActionLink("Удалить", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>
